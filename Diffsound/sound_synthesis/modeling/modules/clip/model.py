@@ -374,6 +374,7 @@ def convert_weights(model: nn.Module):
     """Convert applicable model parameters to fp16"""
 
     def _convert_weights_to_fp16(l):
+        """
         if isinstance(l, (nn.Conv1d, nn.Conv2d, nn.Linear)):
             l.weight.data = l.weight.data.half()
             if l.bias is not None:
@@ -390,6 +391,8 @@ def convert_weights(model: nn.Module):
                 attr = getattr(l, name)
                 if attr is not None:
                     attr.data = attr.data.half()
+
+        """
 
     model.apply(_convert_weights_to_fp16)
 
